@@ -17,6 +17,14 @@ var TestConnect = /** @class */ (function () {
         if (!this.connection) {
             this.connection = mysql_1.default.createConnection(this.config);
         }
+        this.connection.connect(function (err) {
+            if (err) {
+                console.log('数据库连接失败');
+            }
+            else {
+                console.log('数据库连接成功');
+            }
+        });
         return this.connection;
     };
     return TestConnect;
