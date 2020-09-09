@@ -1,7 +1,7 @@
 import Config from '../interface/mysql-config'
 import mysql from 'mysql'
 
-class TestConnect {
+class MenubarConnect {
     config: Config = {
 
         host: "localhost", //这是数据库的地址
@@ -10,7 +10,7 @@ class TestConnect {
     
         password: "-Wwh123456wwh-", //用户密码 ，如果你没有密码，直接双引号就是
     
-        database: "test" //数据库名字
+        database: "menubar" //数据库名字
     
     }
     connection: any
@@ -29,4 +29,4 @@ class TestConnect {
     }
 }
 
-export default new TestConnect().getConnection()
+export default new MenubarConnect().getConnection()
