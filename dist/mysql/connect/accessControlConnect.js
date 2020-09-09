@@ -4,14 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mysql_1 = __importDefault(require("mysql"));
+var accessControl_db_config_1 = __importDefault(require("./config/accessControl-db-config"));
 var AccessControlConnect = /** @class */ (function () {
     function AccessControlConnect() {
-        this.config = {
-            host: "localhost",
-            user: "root",
-            password: "-Wwh123456wwh-",
-            database: "accesscontrol" //数据库名字
-        };
+        this.config = accessControl_db_config_1.default;
     }
     AccessControlConnect.prototype.getConnection = function () {
         if (!this.connection) {
