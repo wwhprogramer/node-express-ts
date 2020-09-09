@@ -1,4 +1,4 @@
-import Config from '../interface/mysql-config'
+import Config from '../mysql-config'
 import mysql from 'mysql'
 
 class TestConnect {

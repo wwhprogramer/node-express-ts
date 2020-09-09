@@ -2,7 +2,8 @@ import express from 'express'
 // 引入公共环境变量
 import {ENV_PORT} from './global'
 // 引入路由模块
-import testRouter from './router/testRouter'
+// import testRouter from './router/testRouter'
+import menubarRouter from './router/menubarRouter'
 const server = express()
 
 server.get('/', (req: any, res: any) => {
@@ -12,7 +13,8 @@ server.get('/', (req: any, res: any) => {
 
 
 // 路由
-server.use('/test', testRouter)
+// server.use('/test', testRouter)
+server.use('/menubar', menubarRouter)
 
 
 server.listen(ENV_PORT, () => {

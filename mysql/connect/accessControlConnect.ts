@@ -1,7 +1,7 @@
-import Config from '../interface/mysql-config'
+import Config from '../mysql-config'
 import mysql from 'mysql'
 
-class MenubarConnect {
+class AccessControlConnect {
     config: Config = {
 
         host: "localhost", //这是数据库的地址
@@ -10,7 +10,7 @@ class MenubarConnect {
     
         password: "-Wwh123456wwh-", //用户密码 ，如果你没有密码，直接双引号就是
     
-        database: "menubar" //数据库名字
+        database: "accesscontrol" //数据库名字
     
     }
     connection: any
@@ -29,4 +29,4 @@ class MenubarConnect {
     }
 }
 
-export default new MenubarConnect().getConnection()
+export default new AccessControlConnect().getConnection()
