@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50731
 File Encoding         : 65001
 
-Date: 2020-09-09 16:29:16
+Date: 2020-09-10 17:11:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,9 +34,12 @@ CREATE TABLE `menubar` (
   `extend3` varchar(50) DEFAULT NULL,
   `classification` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menubar
 -- ----------------------------
 INSERT INTO `menubar` VALUES ('1', '0', '', 'string', '', '', '', '操作', '1', '', '', '', 'test');
+INSERT INTO `menubar` VALUES ('2', '4', 'fun-url', 'fun-id', null, null, null, '操作', '1', null, null, null, 'child test');
+INSERT INTO `menubar` VALUES ('3', '2', 'fun-url-3', null, null, null, null, '操作', '1', null, null, null, 'test-3');
+INSERT INTO `menubar` VALUES ('4', '0', null, null, null, null, null, '操作', '1', null, null, null, 'test-4');
