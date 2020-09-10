@@ -38,6 +38,7 @@ const packageTree = (menubarList: any[]): any[] => {
     // 根节点
     for(let i = 0; i < menubarList.length; i++) {
         let item = menubarList[i]
+        item.key = item.id
         if(!item.parentId) {
             packageList.push(item)
             menubarList.splice(i, 1)

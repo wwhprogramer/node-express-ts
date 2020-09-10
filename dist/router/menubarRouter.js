@@ -39,6 +39,7 @@ var packageTree = function (menubarList) {
     // 根节点
     for (var i = 0; i < menubarList.length; i++) {
         var item = menubarList[i];
+        item.key = item.id;
         if (!item.parentId) {
             packageList.push(item);
             menubarList.splice(i, 1);
