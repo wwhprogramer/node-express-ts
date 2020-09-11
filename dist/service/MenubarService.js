@@ -31,6 +31,19 @@ var MenubarService = /** @class */ (function (_super) {
     MenubarService.prototype.getById = function (id) {
         return new MenubarDao_1.default().getById(id);
     };
+    MenubarService.prototype.saveAllMenu = function (menubarArr) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.deleteMenu().then(function (res) {
+                resolve(new MenubarDao_1.default().saveAllMenu(menubarArr));
+            }).catch(function (err) {
+                reject(err);
+            });
+        });
+    };
+    MenubarService.prototype.deleteMenu = function () {
+        return new MenubarDao_1.default().deleteMenu();
+    };
     return MenubarService;
 }(MenubarDao_1.default));
 exports.default = MenubarService;

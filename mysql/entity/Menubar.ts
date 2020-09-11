@@ -1,5 +1,6 @@
 export interface MenubarInterface {
     id: number | undefined
+    title: string | undefined
     parentId: number | undefined
     funUrl: string | undefined
     funId: string | undefined
@@ -16,6 +17,7 @@ export interface MenubarInterface {
 
 export class Menubar implements MenubarInterface{
     id: number | undefined
+    title: string | undefined
     parentId: number | undefined
     funUrl: string | undefined
     funId: string | undefined
@@ -29,7 +31,7 @@ export class Menubar implements MenubarInterface{
     extend3: string | undefined
     classification: string | undefined
     constructor(menubar: MenubarInterface) {
-        const {id, parentId, funUrl, funId, icon1, icon2, icon3, operateType, isEnable, extend1, extend2, extend3, classification} = menubar
+        const {id, title, parentId, funUrl, funId, icon1, icon2, icon3, operateType, isEnable, extend1, extend2, extend3, classification} = menubar
         this.id = id
         this.parentId = parentId
         this.funUrl = funUrl

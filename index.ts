@@ -6,6 +6,10 @@ import {ENV_PORT} from './global'
 import menubarRouter from './router/menubarRouter'
 const server = express()
 
+const bodyParser = require('body-parser');
+server.use(bodyParser.json());//数据JSON类型
+server.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
+
 server.get('/', (req: any, res: any) => {
     res.send('express 搭建后台服务')
 })

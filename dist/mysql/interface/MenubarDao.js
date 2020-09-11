@@ -33,10 +33,31 @@ var MenubarDao = /** @class */ (function () {
                 if (err) {
                     reject({ msg: err, success: false });
                 }
-                if (!result[0]) {
-                    result[0] = {};
-                }
                 resolve(result[0]);
+            });
+        });
+    };
+    MenubarDao.prototype.saveAllMenu = function (menubarArr) {
+        var insertArr = menubarArr.map(function (item) {
+            var id = item.id, title = item.title, parentId = item.parentId, funUrl = item.funUrl, funId = item.funId, icon1 = item.icon1, icon2 = item.icon2, icon3 = item.icon3, operateType = item.operateType, isEnable = item.isEnable, extend1 = item.extend1, extend2 = item.extend2, extend3 = item.extend3, classification = item.classification;
+            return [id, title, parentId, funUrl, funId, icon1, icon2, icon3, operateType, isEnable, extend1, extend2, extend3, classification];
+        });
+        return new Promise(function (resolve, reject) {
+            accessControlConnect_1.default.query(menubar_1.default.insertAll, [insertArr], function (err, result) {
+                if (err) {
+                    reject({ msg: err, success: false });
+                }
+                resolve(result);
+            });
+        });
+    };
+    MenubarDao.prototype.deleteMenu = function () {
+        return new Promise(function (resolve, reject) {
+            accessControlConnect_1.default.query(menubar_1.default.delete, function (err, result) {
+                if (err) {
+                    reject({ msg: err, success: false });
+                }
+                resolve({ msg: 'delete ok!', success: true });
             });
         });
     };

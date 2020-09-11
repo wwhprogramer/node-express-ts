@@ -10,6 +10,9 @@ var global_1 = require("./global");
 // import testRouter from './router/testRouter'
 var menubarRouter_1 = __importDefault(require("./router/menubarRouter"));
 var server = express_1.default();
+var bodyParser = require('body-parser');
+server.use(bodyParser.json()); //数据JSON类型
+server.use(bodyParser.urlencoded({ extended: false })); //解析post请求数据
 server.get('/', function (req, res) {
     res.send('express 搭建后台服务');
 });
