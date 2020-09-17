@@ -4,6 +4,8 @@ import {ENV_PORT} from './global'
 // 引入路由模块
 // import testRouter from './router/testRouter'
 import menubarRouter from './router/menubarRouter'
+import COVID19Router from './router/COVID-19Router'
+import BookSchinaRouter from './router/BookSchinaRouter'
 const server = express()
 
 const bodyParser = require('body-parser');
@@ -19,6 +21,8 @@ server.get('/', (req: any, res: any) => {
 // 路由
 // server.use('/test', testRouter)
 server.use('/menubar', menubarRouter)
+server.use('/COVID19', COVID19Router)
+server.use('/bookSchina', BookSchinaRouter)
 
 
 server.listen(ENV_PORT, () => {

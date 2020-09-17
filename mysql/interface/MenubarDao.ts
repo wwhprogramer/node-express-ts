@@ -1,5 +1,6 @@
 import BaseDao from './BaseDao'
 import {Menubar} from '../entity/Menubar'
+import Error from './Error'
 import conn from '../connect/accessControlConnect'
 import sql from '../tableOperation/menubar'
 class MenubarDao implements BaseDao<Menubar> {
@@ -11,8 +12,8 @@ class MenubarDao implements BaseDao<Menubar> {
             })
         })
     }
-    getAll(): Promise<any> {
-        return new Promise((resolve: any, reject: any) => {
+    getAll(): Promise<Menubar[]> {
+        return new Promise((resolve: (params: Menubar[]) => void, reject: (params: Error) => void) => {
             conn.query(sql.queryAll, (err: any, result: Menubar[]) => {
                 if(err) {
                     reject({msg: err, success: false})
@@ -21,8 +22,8 @@ class MenubarDao implements BaseDao<Menubar> {
             })
         })
     }
-    getById(id: number): Promise<any> {
-        return new Promise((resolve: any, reject: any) => {
+    getById(id: number): Promise<Menubar> {
+        return new Promise((resolve: (params: Menubar) => void, reject: (params: Error) => void) => {
             conn.query(sql.queryById, id, (err: any, result: Menubar[]) => {
                 if(err) {
                     reject({msg: err, success: false})
@@ -31,12 +32,12 @@ class MenubarDao implements BaseDao<Menubar> {
             })
         })
     }
-    saveAllMenu(menubarArr: Menubar[]): Promise<any> {
+    saveAllMenu(menubarArr: Menubar[]): Promise<Menubar[]> {
         let insertArr = menubarArr.map(item => {
             const {id, title, parentId, funUrl, funId, icon1, icon2, icon3, operateType, isEnable, extend1, extend2, extend3, classification} = item
             return [id, title, parentId, funUrl, funId, icon1, icon2, icon3, operateType, isEnable, extend1, extend2, extend3, classification]
         })
-        return new Promise((resolve: any, reject: any) => {
+        return new Promise((resolve: (params: Menubar[]) => void, reject: (params: Error) => void) => {
             conn.query(sql.insertAll, [insertArr], (err: any, result: Menubar[]) => {
                 if(err) {
                     reject({msg: err, success: false})
