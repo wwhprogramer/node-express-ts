@@ -4,13 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var express_ws_1 = __importDefault(require("express-ws"));
 var MenubarService_1 = __importDefault(require("../service/MenubarService"));
 var menubarRouter = express_1.default.Router();
+express_ws_1.default(menubarRouter);
+var menubarSocket = null;
 menubarRouter.get('/getAllMenu', function (req, res) {
     var menubarService = new MenubarService_1.default();
     menubarService.getAll()
         .then(function (result) {
         var packageResult = packageTree(result);
+        // console.log(menubarSocket)
+        menubarSocket.send(packageResult);
         res.send(packageResult);
     })
         .catch(function (err) {
@@ -28,6 +33,14 @@ menubarRouter.post('/saveMenu', function (req, res) {
         .catch(function (err) {
         res.send(err);
     });
+});
+menubarRouter.ws('/ws', function (ws, req) {
+    console.log('socket连接成功');
+    menubarSocket = ws;
+    ws.on('message', function (msg) {
+        console.log(msg);
+    });
+    ws.send('ccc');
 });
 // 将menubar封装成树形组件
 var packageTree = function (menubarList) {

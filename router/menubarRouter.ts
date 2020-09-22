@@ -1,14 +1,20 @@
 import express from 'express'
+import expressWs from 'express-ws'
 import {Menubar, MenubarInterface} from '../mysql/entity/Menubar'
 import MenubarService from '../service/MenubarService'
 
-const menubarRouter = express.Router()
+const menubarRouter: any = express.Router()
+expressWs(menubarRouter)
+
+let menubarSocket: any = null
 
 menubarRouter.get('/getAllMenu', (req: any, res: any) => {
     const menubarService = new MenubarService()
     menubarService.getAll()
     .then((result: Menubar[]) => {
         const packageResult = packageTree(result)
+        // console.log(menubarSocket)
+        menubarSocket.send(packageResult)
         res.send(packageResult)
     })
     .catch((err: any) => {
@@ -27,6 +33,15 @@ menubarRouter.post('/saveMenu', (req: any, res: any) => {
     .catch((err: any) => {
         res.send(err)
     })
+})
+
+menubarRouter.ws('/ws', (ws: any, req: any) => {
+    console.log('socket连接成功')
+    menubarSocket = ws
+    ws.on('message', (msg: any) => {
+        console.log(msg)
+    })
+    ws.send('ccc')
 })
 
 // 将menubar封装成树形组件

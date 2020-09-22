@@ -1,4 +1,5 @@
 import express from 'express'
+import expressWs from 'express-ws'
 // 引入公共环境变量
 import {ENV_PORT} from './global'
 // 引入路由模块
@@ -6,7 +7,9 @@ import {ENV_PORT} from './global'
 import menubarRouter from './router/menubarRouter'
 import COVID19Router from './router/COVID-19Router'
 import BookSchinaRouter from './router/BookSchinaRouter'
+import FileUploadRouter from './router/FileUpload'
 const server = express()
+expressWs(server)
 
 const bodyParser = require('body-parser');
 server.use(bodyParser.json());//数据JSON类型
@@ -23,6 +26,7 @@ server.get('/', (req: any, res: any) => {
 server.use('/menubar', menubarRouter)
 server.use('/COVID19', COVID19Router)
 server.use('/bookSchina', BookSchinaRouter)
+server.use('/file', FileUploadRouter)
 
 
 server.listen(ENV_PORT, () => {
